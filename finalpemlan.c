@@ -148,4 +148,45 @@ void lihatdata()
 		}
 	}
 }
-
+//pencarian berdasarkan nomor tiket
+void caritiket(){
+	int cari;
+	int awal = 0;
+	int akhir = index_data;
+	int tengah = (awal+akhir)/2;
+ 	
+	printf("************************************************\n");
+	printf("		PENCARIAN NOMOR TIKET\n");
+	printf("************************************************\n");
+ 	
+ 	printf("Masukkan Nomor tiket yang dicari : ");
+ 	scanf("%d",&cari);
+ 	
+	while(awal<=akhir)
+	{
+    	if (masuk[tengah].nomortiket < cari)
+    	{
+    		awal = tengah + 1;    
+    	}
+		else if (masuk[tengah].nomortiket == cari) 
+		{
+        	printf("=================================================\n");
+			printf("		Data Penumpang\n");
+			printf("=================================================\n");
+			printf("Nomor Tiket : %d\n", masuk[tengah].nomortiket);
+			printf("Tanggal Masuk : %d / %d  / %d\n", masuk[tengah].date.tgl, masuk[tengah].date.bln, masuk[tengah].date.thn);
+			printf("Nomor Kendaraan : %s \n", masuk[tengah].kendaraan.nopol);
+			printf("Tujuan : %s \n", masuk[tengah].tujuan);
+			printf("Jenis Kendaraan : %s\n", masuk[tengah].kendaraan.jenis);
+			printf("Bobot Kendaraan : %d ton\n\n\n", masuk[tengah].bobot);
+        	break;
+      	}
+      	else{
+        	akhir = tengah - 1;
+    	}
+    	tengah = (awal + akhir)/2;
+   }
+   
+	if (awal > akhir)
+		printf("Data %d tidak ditemukan.\n", cari);
+}
