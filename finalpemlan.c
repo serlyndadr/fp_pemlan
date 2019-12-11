@@ -577,3 +577,30 @@ void sortjeniskendaraan(){
 	 	
 		lihatdata(); 
 }
+void sortb(){
+	int n,a;
+	a = index_data;
+	n = a;
+	int m,j,i;
+	struct data temp;
+	 
+    for(m = n/2;m>0;m/=2)
+	{
+        for(j=m;j<n;j++)
+		{
+            for(i=j-m;i>=0;i-=m)
+			{
+                if(masuk[i+m].bobot>=masuk[i].bobot) 
+				{
+                break;	
+				}
+                else{
+                    temp = masuk[i];
+                    masuk[i] = masuk[i+m];
+                    masuk[i+m] = temp;
+                }
+            }
+        }
+    }	
+    
+}
