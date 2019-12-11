@@ -108,13 +108,44 @@ void tambahdata()
 	scanf("%d",&masuk[index_data].bobot);
 	index_data=index_data+1;
 	
-	if(index_data>=2){
-		for(a=0;a<index_data-1;a++){
-			if (masuk[index_data-1].nomortiket == masuk[a].nomortiket){
-				printf("Nomor tiket telah dimasukkan!!!");
-				masuk[a] = masuk[a-1];
-				break;	
+	int j,i;
+    for(i = 0; i < index_data; i++) {
+    	for(j = i + 1; j < index_data; j++){
+    		if(masuk[i].nomortiket == masuk[j].nomortiket) {
+    			printf("================= DATA SUDAH ADA! ====================");
+    			index_data=index_data-1;
+			}	
+		}
+
+	}
+}
+
+//buat lihat data
+void lihatdata()
+{
+	system("color 0a");
+	int i;
+	if (index_data == 0)
+	{
+		printf("Data Penumpang Kosong\n\n");
+	}else 
+	{
+		for(i=0;i<index_data;i++)
+		{
+			if (masuk[i].nomortiket==0){
+				printf("   ");
+			}else {
+				printf("=================================================\n");
+				printf("		Data Penumpang\n");
+				printf("=================================================\n");
+				printf("Nomor Tiket : %d\n", masuk[i].nomortiket);
+				printf("Tanggal Masuk : %d / %d  / %d\n", masuk[i].date.tgl, masuk[i].date.bln, masuk[i].date.thn);
+				printf("Nomor Kendaraan : %s \n", masuk[i].kendaraan.nopol);
+				printf("Tujuan : %s \n", masuk[i].tujuan);
+				printf("Jenis Kendaraan : %s\n", masuk[i].kendaraan.jenis);
+				printf("Bobot Kendaraan : %d ton\n\n\n", masuk[i].bobot);	
 			}
 		}
 	}
 }
+
