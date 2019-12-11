@@ -7,6 +7,7 @@ int index_data=0;
 int jenis_kendaraan;
 int tujuan1;
 void sort();
+void sortb();
 
 //ini struct
 struct data 
@@ -604,3 +605,155 @@ void sortb(){
     }	
     
 }
+
+//sorting bobot kendaraan
+void sortbobot()
+{
+	int n,a;
+	a = index_data;
+	n = a;
+	int m,j,i;
+	struct data temp;
+	 
+    for(m = n/2;m>0;m/=2)
+	{
+        for(j=m;j<n;j++)
+		{
+            for(i=j-m;i>=0;i-=m)
+			{
+                if(masuk[i+m].bobot>=masuk[i].bobot) 
+				{
+                break;	
+				}
+                else{
+                    temp = masuk[i];
+                    masuk[i] = masuk[i+m];
+                    masuk[i+m] = temp;
+                }
+            }
+        }
+    }	
+    
+
+    printf("================================================\n");
+	printf("		DATA YANG DIURUTKAN\n");
+	printf("	  Berdasarkan Bobot Kendaraan\n");
+	printf("================================================\n\n");
+	 	
+		lihatdata(); 
+}
+
+//main
+
+void tampilanawal(){
+system("color 70");
+printf(" \t\t\t\t========================================\n");
+printf("\t\t\t\t|  SELAMAT DATANG DI APLIKASI PELABUHAN\t| \n");
+printf("\t\t\t\t|_______________________________________| \n");
+printf("\t\t\t\t|SERLYNDA DWI ROSALINA	(18081010010)\t| \n");
+printf("\t\t\t\t|MELANIA SYAFRIDA P     (18081010011) \t| \n");
+printf(" \t\t\t\t========================================\n");
+	
+}
+
+void menuawal(){
+system("color 0B");
+	int pilihan,pilih;
+
+	while (pilihan != 1 || pilihan != 2 || pilihan != 3 || pilihan != 4 || pilihan != 5)
+	{		
+
+printf("\n **************************************\n");
+printf("|          MENU UTAMA                  |\n");
+printf(" **************************************\n");
+printf("(1. Tambah data                        )\n");
+printf("(2. Ubah Data                          )\n");
+printf("(3. Pencarian Data                     )\n");
+printf("(4. Pengurutan Data                    )\n");
+printf("(5. Lihat Data                         )\n");
+printf("(6. EXIT                               )\n");
+printf(" **************************************\n");
+printf("Masukkan Pilihan Anda : ");
+scanf("%d", &pilihan);
+	
+		if (pilihan == 1)
+		{
+			system("cls");
+			tambahdata();
+		} else if (pilihan == 2)
+		{
+			system("cls");
+			ubah();
+		}
+		else if (pilihan == 3)
+		{
+			printf("\n\n1. Pencarian Data Berdasarkan Nomor Tiket\n");
+			printf("2. Pencarian Data Berdasarkan Bobot Kendaraan\n");
+			printf("3. Pencarian Data Berdasarkan Nomor Kendaraan\n");
+			printf("Masukkan Pilihan Anda : ");
+			scanf("%d",&pilih);
+			if (pilih == 1){
+				caritiket();
+			}
+			else if (pilih==2){
+				caribobot();
+			}
+			else if (pilih==3){
+				carinopol();
+			}
+		}
+		else if (pilihan == 4)
+		{
+			printf("\n\n1. Pengurutan Data Berdasarkan Nomor Tiket\n");
+			printf("2. Pengurutan Data Berdasarkan Tanggal\n");
+			printf("3. Pengurutan Data Berdasarkan Bobot Kendaraan\n");
+			printf("4. Pengurutan Data Berdasarkan Tujuan\n");
+			printf("5. Pengurutan Data Berdasarkan Jenis Kendaraan\n");
+			printf("6. Pengurutan Data Berdasarkan Nomor Kendaraan\n");
+			printf("Masukkan Pilihan Anda : ");
+			scanf("%d",&pilih);
+			fflush(stdin);
+			
+				if (pilih == 1)
+				{
+					sorttiket();
+				}else if (pilih == 2)
+				{
+		 			sortdate();
+				}else if (pilih == 3)
+				{
+					sortbobot();
+				}else if (pilih == 4)
+				{
+					sorttujuan();
+				}else if (pilih == 5){
+					sortjeniskendaraan();
+				}
+				else if (pilih == 6){
+					sortnopol();
+				}
+		}else if (pilihan == 5) 
+		{
+			lihatdata();
+		}
+		else if (pilihan == 6)
+		{
+			printf("\n\n\n_______________________________________________________________________\n");
+			printf("[-[-[-[-[-[ TERIMAKASIH TELAH MENGGUNAKAN PROGRAM INI ]-]-]-]-]-]\n");
+			printf("_______________________________________________________________________\n");
+			break;
+		}
+	
+	
+}
+}
+int main() 
+{
+	tampilanawal();
+	printf("PLEASE ENTER TO CONTINUE :))))");
+	getch();
+	system("cls");
+	menuawal();
+	return 0;
+}
+	
