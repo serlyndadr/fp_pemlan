@@ -374,4 +374,206 @@ void ubah()
 	if (awal > akhir)
 		printf("Data %d tidak ditemukan.\n", cari);
 	}
+//sorting berdasarkan abjad tujuan
+void sorttujuan()
+{
+	int n,a,bc,x;
+	a = index_data;
+	n = a;
+	int m,j,i;
+	struct data temp;
+	 
+    for(m=n/2;m>0;m/=2)
+	{
+        for(j=m;j<n;j++)
+		{
+            for(i=j-m;i>=0;i-=m)
+			{
+				bc=strcmp(masuk[i+m].tujuan,masuk[i].tujuan);
+                if(bc>0){
+                	break;
+				}
+                else{
+                    temp = masuk[i];
+                    masuk[i] = masuk[i+m];
+                    masuk[i+m] = temp;
+                }
+            }
+        }
+    }
 
+    	printf("================================================\n");
+	 	printf("		DATA YANG DIURUTKAN\n");
+	 	printf("	  Berdasarkan Tujuan\n");
+	 	printf("================================================\n\n");
+	 	
+		lihatdata(); 
+}
+
+//sorting berdasarkan nomor tiket
+void sort()
+{
+	int n,a;
+	a = index_data;
+	n = a;
+	int m,j,i;
+	struct data temp;
+	 
+    for(m = n/2;m>0;m/=2)
+	{
+        for(j=m;j<n;j++)
+		{
+            for(i=j-m;i>=0;i-=m)
+			{
+                if(masuk[i+m].nomortiket>=masuk[i].nomortiket) 
+				break;
+                else{
+                    temp = masuk[i];
+                    masuk[i] = masuk[i+m];
+                    masuk[i+m] = temp;
+                }
+            }
+        }
+    }
+}
+
+//sorting berdasarkan nomor tiket
+void sorttiket()
+{
+	int n,a;
+	a = index_data;
+	n = a;
+	int m,j,i;
+	struct data temp;
+	 
+    for(m = n/2;m>0;m/=2)
+	{
+        for(j=m;j<n;j++)
+		{
+            for(i=j-m;i>=0;i-=m)
+			{
+                if(masuk[i+m].nomortiket>=masuk[i].nomortiket) 
+				break;
+                else{
+                    temp = masuk[i];
+                    masuk[i] = masuk[i+m];
+                    masuk[i+m] = temp;
+                }
+            }
+        }
+    }
+    
+    	printf("************************************************\n");
+	 	printf("		DATA YANG DIURUTKAN\n");
+	 	printf("	  Berdasarkan Nomor Tiket\n");
+	 	printf("************************************************\n\n");
+	 	
+	 
+		lihatdata();
+}
+
+// sorting tanggal
+
+void sortdate(){
+	int n;
+	n = index_data;
+	int m,j,i;
+	
+	struct data temp;
+	 
+    for(m = n/2;m>0;m/=2)
+	{
+        for(j=m;j<n;j++)
+		{
+            for(i=j-m;i>=0;i-=m)
+			{
+                if(masuk[i+m].date.thn >= masuk[i].date.thn && masuk[i+m].date.bln >= masuk[i].date.bln && masuk[i+m].date.tgl >= masuk[i].date.tgl){
+                	break;
+				}
+                else{
+                    temp = masuk[i];
+                    masuk[i] = masuk[i+m];
+                    masuk[i+m] = temp;
+                }
+            }
+        }
+    }
+    printf("***********************************************\n");
+	printf("		DATA YANG DIURUTKAN\n");
+	printf("	  Berdasarkan Tanggal Masuk\n");
+	printf("***********************************************\n\n");
+	 	lihatdata();
+	 	
+}
+// sorting nomor kendaraan
+void sortnopol(){
+	int n,a,bc;
+	a = index_data;
+	n = a;
+	int m,j,i;
+	struct data temp;
+	 
+    for(m = n/2;m>0;m/=2)
+	{
+        for(j=m;j<n;j++)
+		{
+            for(i=j-m;i>=0;i-=m)
+			{
+				bc=strcmp(masuk[i+m].kendaraan.nopol,masuk[i].kendaraan.nopol);
+                if(bc>0) 
+				{
+                break;	
+				}
+                else{
+                    temp = masuk[i];
+                    masuk[i] = masuk[i+m];
+                    masuk[i+m] = temp;
+                }
+            }
+        }
+    }	
+    
+
+    printf("================================================\n");
+	printf("		DATA YANG DIURUTKAN\n");
+	printf("	  Berdasarkan Nomor Kendaraan\n");
+	printf("================================================\n\n");
+	 	
+		lihatdata(); 
+}
+
+void sortjeniskendaraan(){
+	int n,a,bc;
+	a = index_data;
+	n = a;
+	int m,j,i;
+	struct data temp;
+	 
+    for(m = n/2;m>0;m/=2)
+	{
+        for(j=m;j<n;j++)
+		{
+            for(i=j-m;i>=0;i-=m)
+			{
+				bc=strcmp(masuk[i+m].kendaraan.jenis,masuk[i].kendaraan.jenis);
+                if(bc>0) 
+				{
+                break;	
+				}
+                else{
+                    temp = masuk[i];
+                    masuk[i] = masuk[i+m];
+                    masuk[i+m] = temp;
+                }
+            }
+        }
+    }	
+    
+
+    printf("================================================\n");
+	printf("		DATA YANG DIURUTKAN\n");
+	printf("	  Berdasarkan Jenis Kendaraan\n");
+	printf("================================================\n\n");
+	 	
+		lihatdata(); 
+}
