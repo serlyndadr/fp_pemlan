@@ -1,4 +1,4 @@
- #include <stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <conio.h>
@@ -49,3 +49,4 @@ void tambahdata()
 	gets(x);
 	strcpy(masuk[index_data].kendaraan.nopol, x);
 	fflush(stdin);	
+}
