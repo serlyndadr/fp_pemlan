@@ -191,21 +191,68 @@ void caritiket(){
 		printf("Data %d tidak ditemukan.\n", cari);
 }
 void caribobot(){
-	int cari;
+	//int cari;
+	int awal = 0;
+	int akhir = index_data;
+	int tengah = (awal+akhir)/2;
+ 	int cari;
+ 	sortb();
+ 	printf("Masukkan bobot yang dicari : ");
+ 	scanf("%d",&cari);
+ 	int ketemu=0;
+ 	int nilai=0;
+ 	int b;      
+ 			
+		   for(b=0;b<index_data;b++){
+            tengah = (awal + akhir)/2;
+            if(masuk[tengah].bobot == cari)
+            {
+                  ketemu = 1;
+        		  printf("=================================================\n");
+				  printf("		Data Penumpang\n");
+				  printf("=================================================\n");
+				  printf("Nomor Tiket : %d\n", masuk[tengah].nomortiket);
+				  printf("Tanggal Masuk : %d / %d  / %d\n", masuk[tengah].date.tgl, masuk[tengah].date.bln, masuk[tengah].date.thn);
+				  printf("Nomor Kendaraan : %s \n", masuk[tengah].kendaraan.nopol);
+				  printf("Tujuan : %s \n", masuk[tengah].tujuan);
+				  printf("Jenis Kendaraan : %s\n", masuk[tengah].kendaraan.jenis);
+				  printf("Bobot Kendaraan : %d ton\n\n\n", masuk[tengah].bobot);
+				  nilai=nilai+1;
+                  continue;
+            }
+            else if(masuk[tengah].bobot<cari){
+            	  awal = tengah+1;	
+			}
+            else{
+            	  akhir = tengah-1;	
+			}
+      	}
+
+		if(ketemu != 1){
+			printf("Data Tidak ditemukan");
+		}else {
+			printf("Jumlah data yang ditemukan: %d",nilai);
+		}
+ //  	printf("%d",cari[y]);
+
+}
+void carinopol(){
+	char cari [20];
 	int awal = 0;
 	int akhir = index_data;
 	int tengah = (awal+akhir)/2;
  	
- 	printf("Masukkan bobot yang dicari : ");
- 	scanf("%d",&cari);
+ 	printf("Masukkan Nopol yang dicari : ");
+ 	fflush(stdin);
+ 	gets(cari);
  	
 	while(awal<=akhir)
 	{
-    	if (masuk[tengah].bobot < cari)
+    	if (strcmp(masuk[tengah].kendaraan.nopol , cari)<0)
     	{
     		awal = tengah + 1;    
     	}
-		else if (masuk[tengah].bobot == cari) 
+		else if (strcmp(masuk[tengah].kendaraan.nopol,cari)>=0)
 		{
         	printf("=================================================\n");
 			printf("		Data Penumpang\n");
@@ -227,3 +274,104 @@ void caribobot(){
 	if (awal > akhir)
 		printf("Data %d tidak ditemukan.\n", cari);
 }
+
+
+//untuk ubah data
+void ubah()
+{
+	int cari;
+	char x[20];
+	int awal = 0;
+	int akhir = index_data;
+	int tengah = (awal+akhir)/2;
+	lihatdata();
+	sort();
+	printf("Masukkan Nomor tiket yang akan diubah datanya : ");
+	scanf("%d",&cari);
+	
+		while(awal<=akhir)
+		{
+    		if (masuk[tengah].nomortiket < cari)
+    		{
+    			awal = tengah + 1;    
+    		}
+			else if (masuk[tengah].nomortiket == cari) 
+			{
+        		printf("=================================================\n");
+				printf("		Data Penumpang\n");
+				printf("=================================================\n");
+					printf("Masukkan Nomor Tiket : ");
+					scanf("%d",&masuk[tengah].nomortiket);
+					printf("Masukkan Tanggal Masuk kendaraan : ");
+					scanf("%d",&masuk[tengah].date.tgl);
+					printf("Masukkan Bulan Masuk Kendaraan : ");
+					scanf("%d",&masuk[tengah].date.bln);
+					fflush(stdin);
+					printf("Masukkan Tahun Masuk Kendaraan : ");
+					scanf("%d",&masuk[tengah].date.thn);
+					fflush(stdin);
+					printf("Masukkan Nomor Kendaraan (NOPOL) : ");
+					gets(x);
+					strcpy(masuk[tengah].kendaraan.nopol, x);
+					fflush(stdin);
+					printf("Jenis Kendaraan : \n");
+					printf("1. Truk\n");
+					printf("2. Bus\n");
+					printf("3. Minibus\n");
+					printf("4. Motor\n");
+					printf("5. Mobil\n");
+					printf("Masukkan Jenis Kendaraan : ");
+					scanf("%d",&jenis_kendaraan);
+					if (jenis_kendaraan == 1)
+					{
+						strcpy (masuk[tengah].kendaraan.jenis,"Truk");
+					} else if (jenis_kendaraan == 2)
+					{
+						strcpy (masuk[tengah].kendaraan.jenis,"Bus");
+					} else if (jenis_kendaraan == 3) 
+					{
+						strcpy (masuk[tengah].kendaraan.jenis,"Minibus");
+					} else if (jenis_kendaraan == 4)
+					{		
+						strcpy (masuk[tengah].kendaraan.jenis,"Motor");
+					} else if (jenis_kendaraan == 5)
+					{
+						strcpy (masuk[tengah].kendaraan.jenis,"Mobil");
+					}
+					printf("Tujuan yang Tersedia : \n");
+					printf("1. Ketapang\n");
+					printf("2. Padang Bai\n");
+					printf("3. Lembar\n");
+					printf("4. Tanjung Perak\n");
+					printf("Masukkan Tujuan : ");
+					scanf("%d",&tujuan1);
+					if (tujuan1 == 1)
+					{	
+						strcpy (masuk[tengah].tujuan,"Ketapang");
+					} else if (tujuan1 == 2)
+					{
+						strcpy (masuk[tengah].tujuan,"Padang Bai");
+					} else if (tujuan1 == 3) 
+					{
+						strcpy (masuk[tengah].tujuan,"Lembar");
+					} else if (tujuan1 == 4)
+					{
+						strcpy (masuk[tengah].tujuan,"Tanjung Perak");
+					} 
+					printf("Masukkan Bobot Kendaraan : ");
+					scanf("%d",&masuk[tengah].bobot);
+			
+					printf("Data Sudah Diperbarui!!!!!!\n\n");
+        			break;
+      		}
+      		else
+			{
+        		akhir = tengah - 1;
+    		}	
+    		tengah = (awal + akhir)/2;
+   }
+   
+	if (awal > akhir)
+		printf("Data %d tidak ditemukan.\n", cari);
+	}
+
