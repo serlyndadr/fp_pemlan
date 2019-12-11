@@ -162,6 +162,7 @@ void caritiket(){
  	
  	printf("Masukkan Nomor tiket yang dicari : ");
  	scanf("%d",&cari);
+ 	fflush(stdin);
  	
 	while(awal<=akhir)
 	{
@@ -182,14 +183,14 @@ void caritiket(){
 			printf("Bobot Kendaraan : %d ton\n\n\n", masuk[tengah].bobot);
         	break;
       	}
-      	else{
+      	else if (masuk[tengah].nomortiket > cari){
         	akhir = tengah - 1;
     	}
     	tengah = (awal + akhir)/2;
    }
    
 	if (awal > akhir)
-		printf("Data %d tidak ditemukan.\n", cari);
+		printf("DATA DENGAN NOMOR TIKET %d TELAH DITEMUKAN.\n", cari);
 }
 void caribobot(){
 	//int cari;
@@ -200,6 +201,7 @@ void caribobot(){
  	sortb();
  	printf("Masukkan bobot yang dicari : ");
  	scanf("%d",&cari);
+ 	fflush(stdin);
  	int ketemu=0;
  	int nilai=0;
  	int b;      
@@ -230,9 +232,9 @@ void caribobot(){
       	}
 
 		if(ketemu != 1){
-			printf("Data Tidak ditemukan");
+			printf("BOBOT %d TON DITEMUKAN\n\n");
 		}else {
-			printf("Jumlah data yang ditemukan: %d",nilai);
+			printf("DATA DITEMUKAN !!!\n\n",nilai);
 		}
  //  	printf("%d",cari[y]);
 
@@ -266,14 +268,14 @@ void carinopol(){
 			printf("Bobot Kendaraan : %d ton\n\n\n", masuk[tengah].bobot);
         	break;
       	}
-      	else{
+      	else if (masuk[tengah].kendaraan.nopol > cari){
         	akhir = tengah - 1;
     	}
     	tengah = (awal + akhir)/2;
    }
    
 	if (awal > akhir)
-		printf("Data %d tidak ditemukan.\n", cari);
+		printf("NOMOR KENDARAAN TIDAK DITEMUKAN !!!.\n\n", cari);
 }
 
 
@@ -289,6 +291,7 @@ void ubah()
 	sort();
 	printf("Masukkan Nomor tiket yang akan diubah datanya : ");
 	scanf("%d",&cari);
+	fflush(stdin);
 	
 		while(awal<=akhir)
 		{
@@ -365,8 +368,7 @@ void ubah()
 					printf("Data Sudah Diperbarui!!!!!!\n\n");
         			break;
       		}
-      		else
-			{
+      		else if (masuk[tengah].nomortiket > cari){
         		akhir = tengah - 1;
     		}	
     		tengah = (awal + akhir)/2;
@@ -668,13 +670,14 @@ printf("|          MENU UTAMA                  |\n");
 printf(" **************************************\n");
 printf("(1. Tambah data                        )\n");
 printf("(2. Ubah Data                          )\n");
-printf("(3. Pencarian Data                     )\n");
-printf("(4. Pengurutan Data                    )\n");
+printf("(3. Pengurutan Data                    )\n");
+printf("(4. Pencarian Data                     )\n");
 printf("(5. Lihat Data                         )\n");
 printf("(6. EXIT                               )\n");
 printf(" **************************************\n");
 printf("Masukkan Pilihan Anda : ");
 scanf("%d", &pilihan);
+	
 	
 		if (pilihan == 1)
 		{
@@ -687,23 +690,6 @@ scanf("%d", &pilihan);
 		}
 		else if (pilihan == 3)
 		{
-			printf("\n\n1. Pencarian Data Berdasarkan Nomor Tiket\n");
-			printf("2. Pencarian Data Berdasarkan Bobot Kendaraan\n");
-			printf("3. Pencarian Data Berdasarkan Nomor Kendaraan\n");
-			printf("Masukkan Pilihan Anda : ");
-			scanf("%d",&pilih);
-			if (pilih == 1){
-				caritiket();
-			}
-			else if (pilih==2){
-				caribobot();
-			}
-			else if (pilih==3){
-				carinopol();
-			}
-		}
-		else if (pilihan == 4)
-		{
 			printf("\n\n1. Pengurutan Data Berdasarkan Nomor Tiket\n");
 			printf("2. Pengurutan Data Berdasarkan Tanggal\n");
 			printf("3. Pengurutan Data Berdasarkan Bobot Kendaraan\n");
@@ -714,27 +700,46 @@ scanf("%d", &pilihan);
 			scanf("%d",&pilih);
 			fflush(stdin);
 			
-				if (pilih == 1)
-				{
-					sorttiket();
-				}else if (pilih == 2)
-				{
-		 			sortdate();
-				}else if (pilih == 3)
-				{
-					sortbobot();
-				}else if (pilih == 4)
-				{
+					if (pilih == 1)
+					{
+						sorttiket();
+					}else if (pilih == 2)
+					{
+		 				sortdate();
+					}else if (pilih == 3)
+					{
+						sortbobot();
+					}else if (pilih == 4)
+					{
 					sorttujuan();
-				}else if (pilih == 5){
-					sortjeniskendaraan();
-				}
-				else if (pilih == 6){
-					sortnopol();
-				}
-		}else if (pilihan == 5) 
+					}else if (pilih == 5){
+						sortjeniskendaraan();
+					}
+					else if (pilih == 6){
+						sortnopol();
+					}
+		}
+		else if (pilihan == 4)
 		{
-			lihatdata();
+				printf("\n\n1. Pencarian Data Berdasarkan Nomor Tiket\n");
+				printf("2. Pencarian Data Berdasarkan Bobot Kendaraan\n");
+				printf("3. Pencarian Data Berdasarkan Nomor Kendaraan\n");
+				printf("Masukkan Pilihan Anda : ");
+				scanf("%d",&pilih);
+				fflush(stdin);
+				if (pilih == 1){
+				caritiket();
+				}
+				else if (pilih==2){
+				caribobot();
+				}
+				else if (pilih==3){
+				carinopol();
+				}
+		}
+		else if (pilihan == 5) 
+		{
+				lihatdata();
 		}
 		else if (pilihan == 6)
 		{
@@ -743,9 +748,7 @@ scanf("%d", &pilihan);
 			printf("_______________________________________________________________________\n");
 			break;
 		}
-	
-	
-}
+	}
 }
 int main() 
 {
